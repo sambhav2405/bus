@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - City Bus Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="form-box">
+            <div class="border-animation"></div>
+
+            <form id="loginForm" class="form-content active">
+                <h2>Welcome Back!</h2>
+                <p>Track your ride in real-time.</p>
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="Username / Email" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Password" required>
+                </div>
+                <div class="form-options">
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                </div>
+                <button type="submit" class="submit-btn">Login</button>
+                <p class="switch-form">Don't have an account? <a href="#" id="showSignup">Sign Up</a></p>
+            </form>
+
+            <form id="signupForm" class="form-content">
+                <h2>Create Account</h2>
+                <p>Join our community now!</p>
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="Username" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" placeholder="Email" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Create Password" required>
+                </div>
+                <button type="submit" class="submit-btn">Sign Up</button>
+                <p class="switch-form">Already have an account? <a href="#" id="showLogin">Login</a></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
