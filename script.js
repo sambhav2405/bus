@@ -53,15 +53,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // --- ICONS ---
         const busIcon = L.icon({ iconUrl: 'https://img.icons8.com/plasticine/100/bus.png', iconSize: [40, 40], iconAnchor: [20, 20] });
-        const standIcon = L.icon({ iconUrl: 'https://img.icons8.com/office/80/bus-stop.png', iconSize: [35, 35], iconAnchor: [17, 35] });
+        const standIcon = L.icon({ iconUrl: 'https://iconscout.com/icons/stop-signboard', iconSize: [35, 35], iconAnchor: [17, 35] });
 
         // --- MOCK DATA ---
+        // highlight-start
         const allBuses = [
             { id: 1, number: 'R-4', route: 'Chandpole to Sanganer', lat: 26.925, lng: 75.78, delay: 5, price: 15, eta: '12 min', driver: 'Ramesh Kumar' },
             { id: 2, number: 'R-7', route: 'Jhotwara to Jagatpura', lat: 26.89, lng: 75.80, delay: 0, price: 20, eta: '8 min', driver: 'Suresh Singh' },
             { id: 3, number: 'AC-2', route: 'Vaishali to Airport', lat: 26.91, lng: 75.75, delay: 2, price: 35, eta: '20 min', driver: 'Priya Sharma' },
-            { id: 4, number: 'R-1B', route: 'Mansarovar to Amer', lat: 26.85, lng: 75.77, delay: 10, price: 25, eta: '15 min', driver: 'Amit Verma' }
+            { id: 4, number: 'R-1B', route: 'Mansarovar to Amer', lat: 26.85, lng: 75.77, delay: 10, price: 25, eta: '15 min', driver: 'Amit Verma' },
+            { id: 5, number: 'AC-5', route: 'Sitapura to Kukas', lat: 26.79, lng: 75.82, delay: 3, price: 40, eta: '25 min', driver: 'Sunita Devi' },
+            { id: 6, number: 'R-3', route: 'Bapu Nagar to Vidhyadhar Nagar', lat: 26.93, lng: 75.77, delay: 8, price: 15, eta: '18 min', driver: 'Mohan Lal' },
+            { id: 7, number: 'R-9A', route: 'Tonk Phatak to Kalwar Road', lat: 26.87, lng: 75.76, delay: 1, price: 20, eta: '22 min', driver: 'Geeta Kumari' },
+            { id: 8, number: 'R-15', route: 'Agra Road to Sirsi Road', lat: 26.88, lng: 75.85, delay: 12, price: 22, eta: '30 min', driver: 'Rajesh Meena' },
+            { id: 9, number: 'LOW-FLOOR-1', route: 'Jagatpura to Railway Station', lat: 26.84, lng: 75.83, delay: 0, price: 30, eta: '7 min', driver: 'Deepak Jangid' }
         ];
+        // highlight-end
         const busStands = [
             { name: 'Sindhi Camp Bus Stand', lat: 26.9258, lng: 75.7901 },
             { name: 'Gopalbari Bus Stop', lat: 26.923, lng: 75.801 },
