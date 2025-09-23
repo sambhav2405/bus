@@ -1,0 +1,198 @@
+/* --- Google Fonts --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* --- Root Variables for Theming --- */
+:root {
+    /* NEW: Light mode theme based on rgba(238, 222, 196) */
+    --primary-color-light: #d97706; /* Amber */
+    --secondary-color-light: #f59e0b; /* Light Amber */
+    --background-light: #eedec4; /* The requested beige color */
+    --text-color-light: #422006; /* Dark Brown */
+    --card-bg-light: #fdfbf7;
+    --border-color-light: #e0e0e0;
+    --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.1);
+    
+    /* Dark Mode Theme */
+    --primary-color-dark: #f59e0b; /* Light Amber */
+    --secondary-color-dark: #d97706; /* Amber */
+    --background-dark: #121212;
+    --text-color-dark: #e0e0e0;
+    --card-bg-dark: #1e1e1e;
+    --border-color-dark: #444;
+    --shadow-dark: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* --- Base Styles --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    transition: background-color 0.4s, color 0.4s;
+}
+
+/* --- Theme Modes --- */
+body.light-mode {
+    background-color: var(--background-light);
+    color: var(--text-color-light);
+}
+body.dark-mode {
+    background-color: var(--background-dark);
+    color: var(--text-color-dark);
+}
+
+/* --- Login Page (No changes) --- */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #4f46e5, #ec4899, #f59e0b);
+    background-size: 400% 400%;
+    animation: gradient-bg 15s ease infinite;
+    padding: 20px;
+}
+
+@keyframes gradient-bg {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.form-box {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 40px;
+    color: #fff;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+.border-animation {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+}
+.border-animation::before {
+    content: ''; position: absolute; top: 50%; left: 50%; width: 600px; height: 600px;
+    background: conic-gradient(transparent, transparent, transparent, #ec4899, #4f46e5, transparent);
+    animation: rotate-border 6s linear infinite; transform: translate(-50%, -50%);
+}
+@keyframes rotate-border {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+.form-content { display: none; flex-direction: column; align-items: center; text-align: center; animation: fade-in 0.5s ease; }
+.form-content.active { display: flex; }
+@keyframes fade-in { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+.form-content h2 { margin-bottom: 10px; font-weight: 600; }
+.form-content p { margin-bottom: 30px; font-size: 0.9em; opacity: 0.8; }
+.input-group { position: relative; width: 100%; margin-bottom: 20px; }
+.input-group i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,0.6); }
+.input-group input { width: 100%; padding: 15px 15px 15px 45px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); border-radius: 10px; color: #fff; font-size: 1em; }
+.input-group input::placeholder { color: rgba(255,255,255,0.6); }
+.submit-btn { width: 100%; padding: 15px; border: none; border-radius: 10px; background: linear-gradient(90deg, #4f46e5, #ec4899); color: #fff; font-size: 1.1em; font-weight: 600; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
+.submit-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+.switch-form { margin-top: 20px; }
+.switch-form a { color: #ec4899; text-decoration: none; font-weight: 600; }
+
+/* --- Main Site Header --- */
+header {
+    display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%;
+    position: sticky; top: 0; z-index: 1000; transition: background-color 0.4s, box-shadow 0.4s;
+}
+.light-mode header { background-color: rgba(253, 251, 247, 0.8); backdrop-filter: blur(10px); box-shadow: var(--shadow-light); }
+.dark-mode header { background-color: rgba(30, 30, 30, 0.8); backdrop-filter: blur(10px); box-shadow: var(--shadow-dark); }
+
+.logo { display: flex; align-items: center; gap: 10px; }
+.logo i { font-size: 2rem; color: var(--primary-color-light); }
+.dark-mode .logo i { color: var(--primary-color-dark); }
+.logo h1 { font-size: 1.5rem; font-weight: 700; }
+.logo h1 span { color: var(--primary-color-light); }
+.dark-mode .logo h1 span { color: var(--primary-color-dark); }
+
+nav ul { list-style: none; display: flex; gap: 2rem; }
+nav ul li a { text-decoration: none; font-weight: 500; transition: color 0.3s; }
+.light-mode nav ul li a { color: var(--text-color-light); }
+.dark-mode nav ul li a { color: var(--text-color-dark); }
+nav ul li a:hover { color: var(--primary-color-light); }
+.dark-mode nav ul li a:hover { color: var(--primary-color-dark); }
+nav ul li a i { margin-right: 5px; }
+
+.header-actions { display: flex; align-items: center; gap: 1rem; }
+#theme-toggle { background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+.light-mode #theme-toggle { color: var(--text-color-light); }
+.dark-mode #theme-toggle { color: var(--text-color-dark); }
+.login-btn { padding: 0.6rem 1.5rem; border-radius: 20px; text-decoration: none; font-weight: 600; color: #fff; background: linear-gradient(90deg, var(--primary-color-light), var(--secondary-color-light)); transition: transform 0.2s, box-shadow 0.2s; }
+.dark-mode .login-btn { background: linear-gradient(90deg, var(--primary-color-dark), var(--secondary-color-dark)); }
+.login-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+
+/* --- Map & Announcement --- */
+#map-section { padding: 20px; }
+#map { height: 500px; width: 100%; border-radius: 15px; }
+.light-mode #map { box-shadow: var(--shadow-light); }
+.dark-mode #map { box-shadow: var(--shadow-dark); }
+#announcement { padding: 0 20px; }
+.announcement-box { display: flex; align-items: center; padding: 15px; border-radius: 10px; margin: 20px 0; }
+.light-mode .announcement-box { background-color: var(--card-bg-light); box-shadow: var(--shadow-light); }
+.dark-mode .announcement-box { background-color: var(--card-bg-dark); box-shadow: var(--shadow-dark); }
+.announcement-box i { font-size: 1.5rem; margin-right: 15px; color: var(--primary-color-light); }
+.dark-mode .announcement-box i { color: var(--primary-color-dark); }
+
+/* --- Search Section --- */
+#search-section { text-align: center; padding: 40px 20px; }
+#search-form { display: flex; justify-content: center; gap: 15px; margin-top: 20px; flex-wrap: wrap; }
+.input-wrapper { position: relative; }
+.input-wrapper i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); opacity: 0.5; }
+#search-form input { padding: 15px 15px 15px 40px; border-radius: 10px; min-width: 250px; }
+.light-mode #search-form input { background: var(--card-bg-light); border: 1px solid var(--border-color-light); color: var(--text-color-light); }
+.dark-mode #search-form input { background: var(--card-bg-dark); border: 1px solid var(--border-color-dark); color: var(--text-color-dark); }
+#search-form button, #show-all-buses { padding: 15px 30px; border: none; border-radius: 10px; cursor: pointer; font-weight: 600; color: #fff; background: linear-gradient(90deg, var(--primary-color-light), var(--secondary-color-light)); }
+.dark-mode #search-form button, .dark-mode #show-all-buses { background: linear-gradient(90deg, var(--primary-color-dark), var(--secondary-color-dark)); }
+#show-all-buses { margin-top: 15px; }
+.hidden { display: none; }
+
+
+/* --- Bus Cards Section --- */
+#bus-list-section { padding: 20px 5%; }
+.bus-cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+.bus-card { padding: 20px; border-radius: 15px; cursor: pointer; transition: transform 0.3s, box-shadow 0.3s; }
+.light-mode .bus-card { background: var(--card-bg-light); box-shadow: var(--shadow-light); border: 1px solid var(--border-color-light); }
+.dark-mode .bus-card { background: var(--card-bg-dark); box-shadow: var(--shadow-dark); border: 1px solid var(--border-color-dark); }
+.bus-card:hover { transform: translateY(-5px); }
+.card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
+.card-header h3 { font-size: 1.2rem; font-weight: 600; }
+.card-header .bus-number { padding: 5px 10px; border-radius: 5px; font-weight: bold; color: #fff; background: var(--primary-color-light); }
+.dark-mode .card-header .bus-number { background: var(--primary-color-dark); }
+.card-body p { margin-bottom: 10px; display: flex; align-items: center; gap: 10px; opacity: 0.9; }
+.card-body p i { width: 20px; text-align: center; color: var(--primary-color-light); }
+.dark-mode .card-body p i { color: var(--primary-color-dark); }
+
+/* --- NEW: Favorite Button Styles --- */
+.favorite-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #ccc;
+    transition: color 0.2s, transform 0.2s;
+}
+.favorite-btn:hover {
+    transform: scale(1.1);
+}
+.favorite-btn.active {
+    color: #ef4444; /* Red color for active favorite */
+}
+
+/* --- Modal Styles --- */
+.modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); backdrop-filter: blur(5px); justify-content: center; align-items: center; }
+.modal-content { border-radius: 15px; padding: 30px; width: 90%; max-width: 500px; position: relative; animation: slide-in 0.4s ease; }
+@keyframes slide-in { from { transform: translateY(-30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.light-mode .modal-content { background: var(--background-light); }
+.dark-mode .modal-content { background: var(--background-dark); }
+.close-button { position: absolute; top: 15px; right: 20px; font-size: 2rem; font-weight: bold; cursor: pointer; }

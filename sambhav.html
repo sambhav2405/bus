@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Bus Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="light-mode">
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-bus-simple"></i>
+            <h1>City<span>Track</span></h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#map-section"><i class="fa-solid fa-bus"></i> Buses</a></li>
+                <li><a href="#" id="show-nearby-stands"><i class="fa-solid fa-store"></i> Nearby Stands</a></li>
+                <li><a href="#" id="show-favorites-link"><i class="fa-solid fa-heart"></i> My Fav</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <button id="theme-toggle"><i class="fa-solid fa-circle-half-stroke"></i></button>
+            <a href="login.html" class="login-btn">Login</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="map-section">
+            <div id="map"></div>
+        </section>
+
+        <section id="announcement">
+            <div class="announcement-box">
+                <i class="fa-solid fa-bullhorn"></i>
+                <marquee><strong>New Update:</strong> Route 5B will be diverted via Central Park from tomorrow due to road work. Expect a 10-minute delay.</marquee>
+            </div>
+        </section>
+
+        <section id="search-section">
+            <h2>Find Your Bus</h2>
+            <form id="search-form">
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-location-arrow"></i>
+                    <input type="text" id="from-location" placeholder="From">
+                </div>
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-map-marker-alt"></i>
+                    <input type="text" id="to-location" placeholder="To">
+                </div>
+                <button type="submit">Search</button>
+            </form>
+            <button id="show-all-buses" class="hidden">Show All Buses</button>
+        </section>
+
+        <section id="bus-list-section">
+            <div id="bus-list-container" class="bus-cards-grid">
+                </div>
+        </section>
+    </main>
+
+    <div id="bus-detail-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <div id="modal-body">
+                </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
