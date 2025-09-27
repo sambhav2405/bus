@@ -46,38 +46,55 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // --- MAP INITIALIZATION ---
-        const map = L.map('map').setView([26.9124, 75.7873], 13); // Jaipur
+        const map = L.map('map').setView([30.91, 75.85], 9); // Centered on Ludhiana, zoomed out for Punjab view
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
         // --- ICONS ---
         const busIcon = L.icon({ iconUrl: 'https://img.icons8.com/plasticine/100/bus.png', iconSize: [40, 40], iconAnchor: [20, 20] });
-        const standIcon = L.icon({ iconUrl: 'https://iconscout.com/icons/stop-signboard', iconSize: [35, 35], iconAnchor: [17, 35] });
+        const standIcon = L.icon({ iconUrl: 'https://img.icons8.com/fluency/48/bus-stop.png', iconSize: [35, 35], iconAnchor: [17, 35] });
 
-        // --- MOCK DATA ---
-        // highlight-start
+        // --- EXPANDED MOCK DATA FOR PUNJAB ---
         const allBuses = [
-            { id: 1, number: 'R-4', route: 'Chandpole to Sanganer', lat: 26.925, lng: 75.78, delay: 5, price: 15, eta: '12 min', driver: 'Ramesh Kumar' },
-            { id: 2, number: 'R-7', route: 'Jhotwara to Jagatpura', lat: 26.89, lng: 75.80, delay: 0, price: 20, eta: '8 min', driver: 'Suresh Singh' },
-            { id: 3, number: 'AC-2', route: 'Vaishali to Airport', lat: 26.91, lng: 75.75, delay: 2, price: 35, eta: '20 min', driver: 'Priya Sharma' },
-            { id: 4, number: 'R-1B', route: 'Mansarovar to Amer', lat: 26.85, lng: 75.77, delay: 10, price: 25, eta: '15 min', driver: 'Amit Verma' },
-            { id: 5, number: 'AC-5', route: 'Sitapura to Kukas', lat: 26.79, lng: 75.82, delay: 3, price: 40, eta: '25 min', driver: 'Sunita Devi' },
-            { id: 6, number: 'R-3', route: 'Bapu Nagar to Vidhyadhar Nagar', lat: 26.93, lng: 75.77, delay: 8, price: 15, eta: '18 min', driver: 'Mohan Lal' },
-            { id: 7, number: 'R-9A', route: 'Tonk Phatak to Kalwar Road', lat: 26.87, lng: 75.76, delay: 1, price: 20, eta: '22 min', driver: 'Geeta Kumari' },
-            { id: 8, number: 'R-15', route: 'Agra Road to Sirsi Road', lat: 26.88, lng: 75.85, delay: 12, price: 22, eta: '30 min', driver: 'Rajesh Meena' },
-            { id: 9, number: 'LOW-FLOOR-1', route: 'Jagatpura to Railway Station', lat: 26.84, lng: 75.83, delay: 0, price: 30, eta: '7 min', driver: 'Deepak Jangid' }
+            // Original Set
+            { id: 1, number: 'PB-10A', route: 'Ludhiana to Chandigarh', lat: 30.85, lng: 75.95, delay: 10, price: 150, eta: '25 min', driver: 'Gurpreet Singh' },
+            { id: 2, number: 'PB-02C', route: 'Amritsar to Jalandhar', lat: 31.55, lng: 74.95, delay: 5, price: 100, eta: '15 min', driver: 'Harman Kaur' },
+            { id: 3, number: 'PB-11B', route: 'Patiala to Ludhiana', lat: 30.50, lng: 76.20, delay: 0, price: 120, eta: '10 min', driver: 'Manpreet Singh' },
+            { id: 4, number: 'PB-08D', route: 'Jalandhar to Hoshiarpur', lat: 31.32, lng: 75.60, delay: 2, price: 80, eta: '18 min', driver: 'Sukhdeep Kaur' },
+            { id: 5, number: 'PB-13F', route: 'Bathinda to Firozpur', lat: 30.25, lng: 74.85, delay: 15, price: 130, eta: '30 min', driver: 'Jaswinder Singh' },
+            { id: 6, number: 'PB-65E', route: 'Mohali to Patiala', lat: 30.68, lng: 76.70, delay: 8, price: 90, eta: '22 min', driver: 'Amandeep Singh' },
+            { id: 7, number: 'PB-06G', route: 'Pathankot to Amritsar', lat: 32.20, lng: 75.55, delay: 4, price: 160, eta: '35 min', driver: 'Navjot Kaur' },
+            { id: 8, number: 'PB-32H', route: 'Moga to Ludhiana', lat: 30.80, lng: 75.25, delay: 0, price: 70, eta: '12 min', driver: 'Baljit Singh' },
+            { id: 9, number: 'PB-01V', route: 'Chandigarh to Amritsar', lat: 30.95, lng: 76.50, delay: 20, price: 250, eta: '45 min', driver: 'Rupinder Kaur' },
+            
+            // New Additions
+            { id: 10, number: 'PB-08J', route: 'Jalandhar to Ludhiana', lat: 31.15, lng: 75.75, delay: 3, price: 95, eta: '14 min', driver: 'Karanvir Singh' },
+            { id: 11, number: 'PB-03N', route: 'Bathinda to Chandigarh', lat: 30.40, lng: 75.50, delay: 25, price: 280, eta: '50 min', driver: 'Simranjeet Kaur' },
+            { id: 12, number: 'PB-11M', route: 'Patiala to Sangrur', lat: 30.30, lng: 76.10, delay: 1, price: 60, eta: '9 min', driver: 'Arshdeep Singh' },
+            { id: 13, number: 'PB-13P', route: 'Firozpur to Moga', lat: 30.90, lng: 74.90, delay: 7, price: 85, eta: '28 min', driver: 'Gaganpreet Kaur' },
+            { id: 14, number: 'PB-07R', route: 'Hoshiarpur to Chandigarh', lat: 31.50, lng: 76.05, delay: 12, price: 170, eta: '33 min', driver: 'Dilpreet Singh' },
+            { id: 15, number: 'PB-03S', route: 'Bathinda to Amritsar', lat: 30.80, lng: 74.90, delay: 18, price: 220, eta: '40 min', driver: 'Jasleen Kaur' },
+            { id: 16, number: 'PB-10T', route: 'Ludhiana to Patiala (Return)', lat: 30.75, lng: 76.00, delay: 0, price: 120, eta: '8 min', driver: 'Harnek Singh' },
+            { id: 17, number: 'PB-65U', route: 'Mohali to Jalandhar', lat: 30.78, lng: 76.45, delay: 5, price: 190, eta: '26 min', driver: 'Prabhjot Kaur' },
+            { id: 18, number: 'PB-02W', route: 'Amritsar to Pathankot', lat: 31.85, lng: 75.20, delay: 9, price: 160, eta: '29 min', driver: 'Sartaj Singh' }
         ];
-        // highlight-end
+
         const busStands = [
-            { name: 'Sindhi Camp Bus Stand', lat: 26.9258, lng: 75.7901 },
-            { name: 'Gopalbari Bus Stop', lat: 26.923, lng: 75.801 },
-            { name: 'Ajmeri Gate Stop', lat: 26.914, lng: 75.818 }
+            { name: 'Ludhiana Bus Stand', lat: 30.903, lng: 75.85 },
+            { name: 'Shaheed Bhagat Singh ISBT, Amritsar', lat: 31.638, lng: 74.86 },
+            { name: 'Amar Shaheed Madan Lal Dhingra ISBT, Chandigarh', lat: 30.72, lng: 76.74 },
+            { name: 'Patiala Bus Stand', lat: 30.34, lng: 76.38 },
+            { name: 'S. Bhagat Singh ISBT, Jalandhar', lat: 31.31, lng: 75.59 },
+            { name: 'Bathinda Bus Stand', lat: 30.20, lng: 74.95 },
+            { name: 'Moga Bus Stand', lat: 30.82, lng: 75.17 },
+            { name: 'Hoshiarpur Bus Stand', lat: 31.51, lng: 75.91 },
+            { name: 'Pathankot Bus Stand', lat: 32.26, lng: 75.65 },
+            { name: 'Firozpur Bus Stand', lat: 30.92, lng: 74.60 }
         ];
         
         let busMarkers = {};
         let standMarkers = [];
-        // NEW: Load favorites from localStorage
         let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
         // --- FUNCTIONS ---
@@ -170,7 +187,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     .bindPopup(`<b>${stand.name}</b>`);
                 standMarkers.push(marker);
             });
-            // Fit map to show all stands
             const group = new L.featureGroup(standMarkers);
             map.fitBounds(group.getBounds().pad(0.5));
         });
@@ -193,12 +209,14 @@ document.addEventListener('DOMContentLoaded', () => {
             showAllBusesBtn.classList.add('hidden');
         });
 
-        // --- USER GEOLOCATION ---
+        // --- USER GEOLOCATION --- (REMOVED)
+        /*
         navigator.geolocation.getCurrentPosition(position => {
             const userPos = [position.coords.latitude, position.coords.longitude];
             map.setView(userPos, 14);
             L.marker(userPos).addTo(map).bindPopup("<b>You are here</b>").openPopup();
         }, () => console.log("Location access denied."));
+        */
 
         // --- SIMULATE REAL-TIME MOVEMENT ---
         setInterval(() => {
@@ -206,7 +224,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 bus.lat += (Math.random() - 0.5) * 0.001;
                 bus.lng += (Math.random() - 0.5) * 0.001;
             });
-            // Update map without filtering
             let currentBusIdsOnDisplay = Array.from(document.querySelectorAll('.bus-card .card-body')).map(el => parseInt(el.dataset.busId));
             let busesToDisplayOnMap = allBuses.filter(bus => currentBusIdsOnDisplay.includes(bus.id));
             displayBusesOnMap(busesToDisplayOnMap);
